@@ -1,0 +1,74 @@
+CREATE TABLE `users` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `role` 
+ `first_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `last_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `password` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+ `created` datetime NOT NULL,
+ `modified` datetime NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `projects` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `logo` varchar(255) COLLATE utf8_unicode_ci,
+ `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `total_freelancer` int(11) COLLATE utf8_unicode_ci NOT NULL,
+ `status` int(12) COLLATE utf8_unicode_ci NOT NULL,
+ `client_id` int(12) COLLATE utf8_unicode_ci NOT NULL,
+ `brought_by` int(12) COLLATE utf8_unicode_ci NOT NULL,
+ `created` datetime NOT NULL,
+ `modified` datetime NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `freelancers` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `photo` varchar(255) COLLATE utf8_unicode_ci,
+ `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `contact_phone` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `status` int(12) COLLATE utf8_unicode_ci NOT NULL,
+ `contact_email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `last_worked` datetime NOT NULL,
+ `joined` date NOT NULL,
+ `task_id` int(12) COLLATE utf8_unicode_ci NOT NULL,
+ `bank_name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `bank_account_no` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `bank_ifsc` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `bank_linked_phone` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `project_id` int(12) COLLATE utf8_unicode_ci NOT NULL,
+ `location` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `refrenced_by` int(12) COLLATE utf8_unicode_ci NOT NULL,
+ `created` datetime NOT NULL,
+ `modified` datetime NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `clients` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `photo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+ `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `contact_phone` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `status` int(12) COLLATE utf8_unicode_ci NOT NULL,
+ `contact_email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `location` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `refrenced_by` int(12) COLLATE utf8_unicode_ci NOT NULL,
+ `created` datetime NOT NULL,
+ `modified` datetime NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `tasklist` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `heading` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+ `created_by` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `startDate` datetime NOT NULL,
+ `endDate` datetime NOT NULL,
+ `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+ `project_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `assigned_to` int(12) COLLATE utf8_unicode_ci NOT NULL,
+ `created` datetime NOT NULL,
+ `modified` datetime NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
