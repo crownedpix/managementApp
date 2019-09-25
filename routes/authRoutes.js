@@ -1,6 +1,6 @@
 var db = require('../db');
 var jwt = require('jsonwebtoken');
-
+const bcrypt = require('bcrypt');
 const tokenForUser = (user) => {
   const timestamp = new Date().getTime();
   return jwt.sign({user:user}, 'sectretkey');
@@ -8,62 +8,65 @@ const tokenForUser = (user) => {
 
 exports.register = function (req, res) {
   var today = new Date();
-  var users = {
-    "first_name": req.body.first_name,
-    "last_name": req.body.last_name,
-    "email": req.body.email,
-    "password": req.body.password,
-    "roles": req.body.roles,
-    "updated_by": req.body.updated_by,
-    "created": today,
-    "modified": today
-  }
-  db.query('INSERT INTO users SET ?', users, function (error, results, fields) {
-    if (error) {
-      res.status(400).send({
-        "status": 400,
-        "failed": "error ocurred"
-      })
-    } else {
-      res.status(200).send({
-        "status": 200,
-        "success": "user registered sucessfully"
-      });
+  var users = {};
+  bcrypt.hash(req.body.password, 10, function(err, hash) {
+    users = {
+      "first_name": req.body.first_name,
+      "last_name": req.body.last_name,
+      "email": req.body.email,
+      "password": hash,
+      "roles": req.body.roles,
+      "updated_by": req.body.updated_by,
+      "created": today,
+      "modified": today
     }
+    db.query('INSERT INTO users SET ?', users, function (error, results, fields) {
+      if (error) {
+        res.status(400).send({
+          "status": 400,
+          "failed": "error ocurred"
+        })
+      } else {
+        res.status(200).send({
+          "status": 200,
+          "success": "user registered sucessfully"
+        });
+      }
+    });
   });
+  
 }
 
-exports.login = function (req, res) {
+exports.login = function (req, response) {
   var email = req.body.email;
   var password = req.body.password;
   db.query('SELECT * FROM users WHERE email = ?', [email], function (error, results, fields) {
     if (error) {
       // console.log("error ocurred",error);
-      res.status(400).send({
+      response.status(400).send({
         "code": 400,
         "failed": "error ocurred"
       })
     } else {
       // console.log('The solution is: ', results);
       if (results.length > 0) {
-        if (results[0].password == password) {
-          var token;
-          // jwt.sign({user:results[0]}, 'secretkey', (err, token) => {
-            res.status(200).send({
-              "status": 200,
-              "token": tokenForUser(results[0])
+        bcrypt.compare(password, results[0].password, function(err, res) {
+          if(res) {
+            var token;
+            response.status(200).send({
+                "status": 200,
+                "token": tokenForUser(results[0])
+              });
+          } else {
+            response.status(401).send({
+              "status": 204,
+              "success": "Email and password does not match"
             });
-          // })
-        }
-        else {
-          res.status(401).send({
-            "status": 204,
-            "success": "Email and password does not match"
-          });
-        }
+          } 
+        });
       }
       else {
-        res.status(401).send({
+        response.status(401).send({
           "status": 401,
           "success": "Email does not exits"
         });
