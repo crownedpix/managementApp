@@ -4,6 +4,9 @@ var today = new Date();
 
 // PROJECTS
 exports.getclients = (req, res) => {
+    var limit = req.query.limit? req.query.limit: 10;
+    var offset = req.query.offset? req.query.offset: 0;
+    
     jwt.verify(req.token, 'sectretkey', (err, authData) => {
         if (err) {
             res.status(403).json({
@@ -11,7 +14,7 @@ exports.getclients = (req, res) => {
                 message: "Authentication failed"
             });
         } else {
-            let sql = 'SELECT * FROM clients';
+            let sql = `SELECT * FROM clients LIMIT ${limit} OFFSET ${offset}`;
             db.query(sql, (err, result) => {
                 if (err) throw err;
                 console.log(result);
@@ -62,6 +65,7 @@ exports.addclient = (req, res) => {
 
 // get single record in Project table
 exports.getpost = (req, res) => {
+    
     let sql = `SELECT * FROM posts WHERE id = ${req.params.id}`;
     db.query(sql, (err, result) => {
         if (err) throw err;
