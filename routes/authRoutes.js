@@ -20,13 +20,13 @@ exports.register = function (req, res) {
   }
   db.query('INSERT INTO users SET ?', users, function (error, results, fields) {
     if (error) {
-      res.send({
-        "code": 400,
+      res.status(400).send({
+        "status": 400,
         "failed": "error ocurred"
       })
     } else {
-      res.send({
-        "code": 200,
+      res.status(200).send({
+        "status": 200,
         "success": "user registered sucessfully"
       });
     }
@@ -39,7 +39,7 @@ exports.login = function (req, res) {
   db.query('SELECT * FROM users WHERE email = ?', [email], function (error, results, fields) {
     if (error) {
       // console.log("error ocurred",error);
-      res.send({
+      res.status(400).send({
         "code": 400,
         "failed": "error ocurred"
       })
@@ -49,22 +49,22 @@ exports.login = function (req, res) {
         if (results[0].password == password) {
           var token;
           // jwt.sign({user:results[0]}, 'secretkey', (err, token) => {
-            res.send({
-              "code": 200,
+            res.status(200).send({
+              "status": 200,
               "token": tokenForUser(results[0])
             });
           // })
         }
         else {
-          res.send({
-            "code": 204,
+          res.status(401).send({
+            "status": 204,
             "success": "Email and password does not match"
           });
         }
       }
       else {
-        res.send({
-          "code": 204,
+        res.status(401).send({
+          "status": 401,
           "success": "Email does not exits"
         });
       }

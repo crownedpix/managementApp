@@ -6,7 +6,7 @@ var today = new Date();
 exports.getfreelancers = (req, res) => {
     jwt.verify(req.token, 'sectretkey', (err, authData) => {
         if (err) {
-            res.json({
+            res.status(403).json({
                 status: 403,
                 message: "Authentication failed"
             });
@@ -15,7 +15,7 @@ exports.getfreelancers = (req, res) => {
             db.query(sql, (err, result) => {
                 if (err) throw err;
                 console.log(result);
-                res.json({
+                res.status(200).json({
                     status: 200,
                     result: result
                 });
@@ -53,7 +53,7 @@ exports.addfreelancer = (req, res) => {
     // Check if Authorised
     jwt.verify(req.token, 'sectretkey', (err, authData) => {
         if (err) {
-            res.json({
+            res.status(403).json({
                 status: 403,
                 message: "Authentication failed"
             });
@@ -62,7 +62,7 @@ exports.addfreelancer = (req, res) => {
             let sql = 'INSERT INTO freelancers SET ?';
             db.query(sql, post, (err, result) => {
                 if (err) throw err;
-                res.json({
+                res.status(200).json({
                     'code': 200,
                     'result': result
                 });

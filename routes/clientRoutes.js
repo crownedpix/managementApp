@@ -6,7 +6,7 @@ var today = new Date();
 exports.getclients = (req, res) => {
     jwt.verify(req.token, 'sectretkey', (err, authData) => {
         if (err) {
-            res.json({
+            res.status(403).json({
                 status: 403,
                 message: "Authentication failed"
             });
@@ -15,7 +15,7 @@ exports.getclients = (req, res) => {
             db.query(sql, (err, result) => {
                 if (err) throw err;
                 console.log(result);
-                res.json({
+                res.status(200).json({
                     status: 200,
                     result: result
                 });
@@ -41,7 +41,7 @@ exports.addclient = (req, res) => {
     // Check if Authorised
     jwt.verify(req.token, 'sectretkey', (err, authData) => {
         if (err) {
-            res.json({
+            res.status(403).json({
                 status: 403,
                 message: "Authentication failed"
             });
@@ -50,7 +50,7 @@ exports.addclient = (req, res) => {
             let sql = 'INSERT INTO clients SET ?';
             db.query(sql, post, (err, result) => {
                 if (err) throw err;
-                res.json({
+                res.status(200).json({
                     'code': 200,
                     'result': result
                 });

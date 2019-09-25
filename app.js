@@ -42,7 +42,7 @@ app.use('/api', router);
 
 // Authentication Routes
 router.post('/register',auth.register);
-router.get('/login',auth.login);
+router.post('/login',auth.login);
 
 // Project Routes
 router.post('/addproject', verifyToken, project.addprojects);
