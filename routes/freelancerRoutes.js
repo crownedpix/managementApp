@@ -49,6 +49,8 @@ exports.addfreelancer = (req, res) => {
         "project_id": req.body.project_id,
         "location": req.body.location,
         "refrenced_by": req.body.refrenced_by,
+        "designation": req.body.designation,
+        "experience": req.body.experience,
         "created": today,
         "modified": today
     };
@@ -75,13 +77,23 @@ exports.addfreelancer = (req, res) => {
 };
 
 // get single record in Project table
-exports.getpost = (req, res) => {
-    let sql = `SELECT * FROM posts WHERE id = ${req.params.id}`;
-    db.query(sql, (err, result) => {
-        if (err) throw err;
-        console.log(result);
-        res.send(result);
-    });
+exports.getfreelancer = (req, res) => {
+    jwt.verify(req.token, 'sectretkey', (err, authData) => {
+        if (err) {
+            res.status(403).json({
+                status: 403,
+                message: "Authentication failed"
+            });
+        } else {
+            let sql = `SELECT * FROM freelancers WHERE id = ${req.params.id}`;
+            db.query(sql, (err, result) => {
+                if (err) throw err;
+                console.log(result);
+                res.send(result);
+            });
+        }
+    })
+
 };
 
 // // update single record in Table

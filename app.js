@@ -2,8 +2,10 @@ const express = require('express');
 var project = require('./routes/projectRoutes');
 var freelancer = require('./routes/freelancerRoutes');
 var client = require('./routes/clientRoutes');
+var user = require('./routes/userRoutes');
 var auth = require('./routes/authRoutes');
 var bodyParser = require('body-parser');
+var http = require('http');
 
 // Declaration of express
 const app = express();
@@ -47,20 +49,34 @@ router.post('/login',auth.login);
 // Project Routes
 router.post('/addproject', verifyToken, project.addprojects);
 router.get('/getprojects', verifyToken, project.getprojects);
+router.get('/getproject/:id', verifyToken, project.getproject);
 
 // Freelancer Routes
 router.post('/addfreelancer', verifyToken, freelancer.addfreelancer);
 router.get('/getfreelancers', verifyToken, freelancer.getfreelancers);
+router.get('/getfreelancer/:id', verifyToken, freelancer.getfreelancer);
 
 // Client Routes
 router.post('/addclient', verifyToken, client.addclient);
 router.get('/getclients', verifyToken, client.getclients);
+router.get('/getclient/:id', verifyToken, client.getclient);
+
+// Others
+router.get('/getusers', verifyToken, user.getusers);
+router.get('/getskills', verifyToken, user.getskills);
+router.post('/setskills', verifyToken, user.setSkills);
+router.get('/getcountries', verifyToken, user.getcountries);
 
 // Run app on Port
 app.listen('3000',()=> {
+// app.listen(process.env.PORT,()=> {
     console.log("Server started on port 3000");
 });
 
+// app.set('port',process.env.PORT);
+// http.createServer(app).listen(app.get('port'), function () {
+//     console.log('Express server listening on port ' + app.get('port'));
+// });
 
 // SAMPLES
 

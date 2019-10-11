@@ -64,14 +64,23 @@ exports.addclient = (req, res) => {
 };
 
 // get single record in Project table
-exports.getpost = (req, res) => {
-    
-    let sql = `SELECT * FROM posts WHERE id = ${req.params.id}`;
-    db.query(sql, (err, result) => {
-        if (err) throw err;
-        console.log(result);
-        res.send(result);
-    });
+exports.getclient = (req, res) => {
+    jwt.verify(req.token, 'sectretkey', (err, authData) => {
+        if (err) {
+            res.status(403).json({
+                status: 403,
+                message: "Authentication failed"
+            });
+        } else {
+            let sql = `SELECT * FROM clients WHERE id = ${req.params.id}`;
+            db.query(sql, (err, result) => {
+                if (err) throw err;
+                console.log(result);
+                res.send(result);
+            });
+        }
+    })
+
 };
 
 // // update single record in Table

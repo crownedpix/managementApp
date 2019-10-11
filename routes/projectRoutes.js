@@ -4,8 +4,8 @@ var today = new Date();
 
 // PROJECTS
 exports.getprojects = (req, res) => {
-    var limit = req.query.limit? req.query.limit: 10;
-    var offset = req.query.offset? req.query.offset: 0;
+    var limit = req.query.limit ? req.query.limit : 10;
+    var offset = req.query.offset ? req.query.offset : 0;
     jwt.verify(req.token, 'sectretkey', (err, authData) => {
         if (err) {
             res.status(403).json({
@@ -18,7 +18,7 @@ exports.getprojects = (req, res) => {
                 if (err) throw err;
                 console.log(result);
                 res.status(200).json({
-                    status:200,
+                    status: 200,
                     result: result
                 });
             });
@@ -36,11 +36,12 @@ exports.addprojects = (req, res) => {
         "skills": req.body.skills,
         "client_id": req.body.client_id,
         "refrenced_by": req.body.refrenced_by,
+        "total_freelancer": req.body.total_freelancer,
         "created": today,
         "modified": today
     };
     // Check if Authorised
- 
+
     jwt.verify(req.token, 'sectretkey', (err, authData) => {
         if (err) {
             res.status(403).json({
@@ -53,7 +54,7 @@ exports.addprojects = (req, res) => {
             db.query(sql, post, (err, result) => {
                 if (err) throw err;
                 res.status(200).json({
-                    'code': 200, 
+                    'code': 200,
                     'result': result
                 });
             });
@@ -63,13 +64,23 @@ exports.addprojects = (req, res) => {
 };
 
 // get single record in Project table
-exports.getpost = (req, res) => {
-    let sql = `SELECT * FROM posts WHERE id = ${req.params.id}`;
-    db.query(sql, (err, result) => {
-        if (err) throw err;
-        console.log(result);
-        res.send(result);
-    });
+exports.getproject = (req, res) => {
+    jwt.verify(req.token, 'sectretkey', (err, authData) => {
+        if (err) {
+            res.status(403).json({
+                status: 403,
+                message: "Authentication failed"
+            });
+        } else {
+            let sql = `SELECT * FROM projects WHERE id = ${req.params.id}`;
+            db.query(sql, (err, result) => {
+                if (err) throw err;
+                console.log(result);
+                res.send(result);
+            });
+        }
+    })
+
 };
 
 // // update single record in Table
