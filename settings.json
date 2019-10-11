@@ -1,6 +1,6 @@
 {
-    "host"     : "localhost",
-    "user"     : "root",
-    "password" : "",
-    "database" : "managementapp"
+    "host"     : "mysql5022.site4now.net",
+    "user"     : "a47f93_manage",
+    "password" : "manage123",
+    "database" : "db_a47f93_manage"
 }
