@@ -1,6 +1,6 @@
 {
-    "host"     : "mysql5022.site4now.net",
-    "user"     : "a47f93_manage",
-    "password" : "manage123",
-    "database" : "db_a47f93_manage"
+    "host"     : "remotemysql.com",
+    "user"     : "lC8jV55f0g",
+    "password" : "gClFJq7CBT",
+    "database" : "lC8jV55f0g"
 }
