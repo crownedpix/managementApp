@@ -6,18 +6,18 @@ var user = require('./routes/userRoutes');
 var auth = require('./routes/authRoutes');
 var bodyParser = require('body-parser');
 var http = require('http');
-
+var Cors = require('cors');
 // Declaration of express
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
-// Creating ACCESS HEADERS
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
+app.use(Cors());
+// // Creating ACCESS HEADERS
+// app.use(function(req, res, next) {
+//     res.header("Access-Control-Allow-Origin", "*");
+//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+//     next();
+// });
 
 // Token verification for login auth
 verifyToken = (req,res,next)=>{
