@@ -73,6 +73,10 @@ app.listen(process.env.PORT || '3000',()=> {
     console.log("Server started on port 3000");
 });
 
+setInterval(function() {
+    http.get("https://peaceful-sands-57519.herokuapp.com/api/");
+}, 300000);
+
 // app.set('port',process.env.PORT);
 // http.createServer(app).listen(app.get('port'), function () {
 //     console.log('Express server listening on port ' + app.get('port'));
