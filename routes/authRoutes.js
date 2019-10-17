@@ -60,7 +60,8 @@ exports.login = function (req, response) {
           } else {
             response.status(401).send({
               "status": 204,
-              "success": "Email and password does not match"
+              "success": "Email and password does not match",
+              "result": results[0]
             });
           } 
         });
