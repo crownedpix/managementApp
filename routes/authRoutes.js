@@ -53,15 +53,17 @@ exports.login = function (req, response) {
         bcrypt.compare(password, results[0].password, function(err, res) {
           if(res) {
             var token;
+            delete results[0].password;
             response.status(200).send({
                 "status": 200,
-                "token": tokenForUser(results[0])
+                "token": tokenForUser(results[0]),
+                "result": results[0]
               });
           } else {
             response.status(401).send({
               "status": 204,
               "success": "Email and password does not match",
-              "result": results[0]
+              
             });
           } 
         });
