@@ -63,6 +63,7 @@ router.get('/getclient/:id', verifyToken, client.getclient);
 
 // Others
 router.get('/getusers', verifyToken, user.getusers);
+router.post('/updateuser/:id', verifyToken, user.updateuser);
 router.get('/getskills', verifyToken, user.getskills);
 router.post('/setskills', verifyToken, user.setSkills);
 router.get('/getcountries', verifyToken, user.getcountries);
