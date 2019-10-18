@@ -99,10 +99,21 @@ exports.getfreelancer = (req, res) => {
 
 // // Delete single record in Table
 exports.deletefreelancer = (req, res) => {
-    let sql = `DELETE FROM freelancers WHERE id = ${req.params.id}`;
-    db.query(sql, (err, result) => {
-        if (err) throw err;
-        console.log(result);
-        res.send('Posts deleted...');
-    });
+    jwt.verify(req.token, 'sectretkey', (err, authData) => {
+        if (err) {
+            res.status(403).json({
+                status: 403,
+                message: "Authentication failed"
+            });
+        } else {
+            let sql = `DELETE FROM freelancers WHERE id = ${req.params.id}`;
+            db.query(sql, (err, result) => {
+                if (err) throw err;
+                res.status(200).json({
+                    'code': 200,
+                    'result': result
+                });
+            });
+        }
+    })
 };
