@@ -83,20 +83,9 @@ exports.getproject = (req, res) => {
 
 };
 
-// // update single record in Table
-exports.updatepost = (req, res) => {
-    let newTitle = 'Updated Title';
-    let sql = `UPDATE posts SET title = '${newTitle}' WHERE id = ${req.params.id}`;
-    db.query(sql, (err, result) => {
-        if (err) throw err;
-        console.log(result);
-        res.send('Posts updated...');
-    });
-};
-
 // // Delete single record in Table
-exports.deletepost = (req, res) => {
-    let sql = `DELETE FROM posts WHERE id = ${req.params.id}`;
+exports.deleteproject = (req, res) => {
+    let sql = `DELETE FROM projects WHERE id = ${req.params.id}`;
     db.query(sql, (err, result) => {
         if (err) throw err;
         console.log(result);

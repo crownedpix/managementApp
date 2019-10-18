@@ -50,16 +50,19 @@ router.post('/login',auth.login);
 router.post('/addproject', verifyToken, project.addprojects);
 router.get('/getprojects', verifyToken, project.getprojects);
 router.get('/getproject/:id', verifyToken, project.getproject);
+router.post('/deleteproject/:id', verifyToken, project.deleteproject);
 
 // Freelancer Routes
 router.post('/addfreelancer', verifyToken, freelancer.addfreelancer);
 router.get('/getfreelancers', verifyToken, freelancer.getfreelancers);
 router.get('/getfreelancer/:id', verifyToken, freelancer.getfreelancer);
+router.post('/deletefreelancer/:id', verifyToken, freelancer.deletefreelancer)
 
 // Client Routes
 router.post('/addclient', verifyToken, client.addclient);
 router.get('/getclients', verifyToken, client.getclients);
 router.get('/getclient/:id', verifyToken, client.getclient);
+router.post('/deleteclient/:id', verifyToken, client.deleteclient);
 
 // Others
 router.get('/getusers', verifyToken, user.getusers);
