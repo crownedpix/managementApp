@@ -4,8 +4,8 @@ var today = new Date();
 
 // PROJECTS
 exports.getprojects = (req, res) => {
-    var limit = req.query.limit ? req.query.limit : 10;
-    var offset = req.query.offset ? req.query.offset : 0;
+        // var limit = req.query.limit ? req.query.limit : 10;
+        // var offset = req.query.offset ? req.query.offset : 0;
     jwt.verify(req.token, 'sectretkey', (err, authData) => {
         if (err) {
             res.status(403).json({
@@ -13,7 +13,8 @@ exports.getprojects = (req, res) => {
                 message: "Authentication failed"
             });
         } else {
-            let sql = `SELECT * FROM projects  LIMIT ${limit} OFFSET ${offset}`;
+            // let sql = `SELECT * FROM projects  LIMIT ${limit} OFFSET ${offset}`;
+            let sql = `SELECT * FROM projects`;
             db.query(sql, (err, result) => {
                 if (err) throw err;
                 console.log(result);

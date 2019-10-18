@@ -28,8 +28,8 @@ exports.getusers = (req, res) => {
 };
 
 exports.getskills = (req, res) => {
-    var limit = req.query.limit? req.query.limit: 10;
-    var offset = req.query.offset? req.query.offset: 0;
+    // var limit = req.query.limit? req.query.limit: 10;
+    // var offset = req.query.offset? req.query.offset: 0;
     
     jwt.verify(req.token, 'sectretkey', (err, authData) => {
         if (err) {
@@ -38,7 +38,8 @@ exports.getskills = (req, res) => {
                 message: "Authentication failed"
             });
         } else {
-            let sql = `SELECT * FROM skills LIMIT ${limit} OFFSET ${offset}`;
+            // let sql = `SELECT * FROM skills LIMIT ${limit} OFFSET ${offset}`;
+            let sql = `SELECT * FROM skills`;
             db.query(sql, (err, result) => {
                 if (err) throw err;
                 console.log(result);
