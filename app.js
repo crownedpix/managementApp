@@ -75,7 +75,7 @@ app.listen(process.env.PORT || '3000',()=> {
 });
 
 setInterval(function() {
-    http.get("http://peaceful-sands-57519.herokuapp.com/api/");
+    http.get("http://peaceful-sands-57519.herokuapp.com/api/getprojects");
 }, 300000);
 
 // app.set('port',process.env.PORT);
