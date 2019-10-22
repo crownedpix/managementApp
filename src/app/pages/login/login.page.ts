@@ -94,7 +94,7 @@ export class LoginPage implements OnInit {
       email: this.onLoginForm.value.email,
       password: this.onLoginForm.value.password
     }
-    this.authservice.login(value)
+    this.authservice.login(value);
   }
 
 }

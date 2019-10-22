@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
@@ -18,10 +18,7 @@ import { SearchFilterPageModule } from './pages/modal/search-filter/search-filte
 // Components
 import { NotificationsComponent } from './components/notifications/notifications.component';
 import { IonicStorageModule } from '@ionic/storage';
-
-// import { FreelancersComponent } from './pages/freelancers/freelancers.component';
-// import { ClientsComponent } from './pages/clients/clients.component';
-// import { ProjectsComponent } from './pages/projects/projects.component';
+import { InterceptorService } from './service/interceptor.service';
 
 @NgModule({
   declarations: [AppComponent, NotificationsComponent],
@@ -32,6 +29,7 @@ import { IonicStorageModule } from '@ionic/storage';
     AppRoutingModule,
     HttpClientModule,
     ImagePageModule,
+    // StarModule,
     SearchFilterPageModule,
     IonicStorageModule.forRoot()
   ],
@@ -39,7 +37,8 @@ import { IonicStorageModule } from '@ionic/storage';
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    { provide: HTTP_INTERCEPTORS, useClass: InterceptorService, multi: true },
   ],
   bootstrap: [AppComponent]
 })

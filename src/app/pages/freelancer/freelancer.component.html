@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/freelancers"></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-text color="light">
+        <ion-text color="light" class="fw700">View Freelancer</ion-text>
+      </ion-text>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="card-background-page">
+  <div class="content-page">
+    <h2>Name</h2>
+    <h3>{{freelancerData.name}}</h3>
+    <h2>Designation</h2>
+    <h3>{{freelancerData.designation}}</h3>
+    <h2>Location</h2>
+    <h3>{{freelancerData.location}}</h3>
+    <h2>Refrenced by</h2>
+    <h3>{{freelancerData.refrenced_by}}</h3>
+    <!-- <h2>Projects</h2>
+            <h3>"Management App"</h3> -->
+    <h2>Current Project</h2>
+    <h3 (click)="goto(freelancerData.project_id.id,'project')">{{freelancerData.project_id.name}}</h3>
+    <h2>Contact</h2>
+    <div class="contact">
+      <span><a href="mailto:{{freelancerData.contact_email}}">{{freelancerData.contact_email}}</a></span>
+      <span>{{freelancerData.contact_phone}}</span>
+      <p class="phone">
+        <a class="makeacall" href="tel:{{freelancerData.contact_phone}}">Call</a>
+        <a class="whatsapp" href="https://api.whatsapp.com/send?phone=+91{{freelancerData.contact_phone}}">Open in Whatsapp</a>
+      </p>
+    </div>
+
+    <!-- <app-star name="3.5"></app-star> -->
+    <h2>Skills</h2>
+    <p>
+      <span color="primary">{{freelancerData.skill}}</span>
+    </p>
+    <h2>Bank Details</h2>
+    <p>BHIM Number: {{freelancerData.BHIM_number}}</p>
+    <p>Account Number: {{freelancerData.bank_account_no}}</p>
+    <p>IFSC: {{freelancerData.bank_ifsc}}</p>
+    <p>Phone: {{freelancerData.bank_linked_phone}}</p>
+    <p>Bank Name: {{freelancerData.bank_name}}</p>
+
+    <ion-button size="large" expand="full" color="dark" (click)="delete(freelancerData.id)"  no-margin>DELETE</ion-button>
+    <p></p>
+  </div>
+</ion-content>

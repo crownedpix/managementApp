@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-text color="light">
+        <ion-text color="light" class="fw700">View Project</ion-text>
+      </ion-text>
+    </ion-title>
+    <!-- <ion-buttons slot="end">
+        <ion-button size="small" shape="round" color="medium" (click)="notifications()">
+          <ion-icon name="notifications"></ion-icon>
+          <ion-badge color="dark" slot="end">2</ion-badge>
+        </ion-button>
+      </ion-buttons> -->
+  </ion-toolbar>
+  <!-- <ion-toolbar color="dark">
+      <ion-searchbar [(ngModel)]="searchKey"></ion-searchbar>
+      <ion-buttons slot="end">
+        <ion-button size="small" shape="round" color="medium" (click)="searchFilter()">
+          <ion-icon name="options"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar> -->
+</ion-header>
+
+<ion-content class="card-background-page">
+  <div class="content-page">
+    <h2>Name</h2>
+    <h3>{{projectData.name}}</h3>
+    <h2>Description</h2>
+    <h3>{{projectData.description}}</h3>
+    <h2>Client</h2>
+    <h3 (click)="goto(extradata.client_id,'client')">{{projectData.client_id}}</h3>
+    <h2>Refrenced by</h2>
+    <p>{{projectData.refrenced_by}}</p>
+    <!-- <app-star name="3.5"></app-star> -->
+    <h2>Skills</h2>
+    <p>
+      <span color="primary">{{projectData.skills}}</span>
+    </p>
+    <h2>Freelancers</h2>
+    <p class="free">
+      <span color="primary" (click)="goto(freelancer.id,'freelancer')" *ngFor="let freelancer of projectData.total_freelancer">{{freelancer.name}} </span>
+    </p>
+    <ion-button size="large" expand="full" color="dark" (click)="delete(projectData.id)"  no-margin>DELETE PROJECT</ion-button>
+    <p></p>
+  </div>
+</ion-content>

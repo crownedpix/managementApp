@@ -5,7 +5,8 @@ import { IonicModule } from '@ionic/angular';
 
 // import { PopmenuComponent } from './../../components/popmenu/popmenu.component';
 import { FreelancersComponent } from './freelancers.component';
-import { StarComponent } from '../../components/star/star.component';
+import { StarModule } from '../../components/star/star.module';
+import { FormsModule } from '@angular/forms';
 const routes: Routes = [
   {
     path: '',
@@ -16,9 +17,11 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     IonicModule,
+    StarModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [FreelancersComponent, StarComponent]
+  declarations: [FreelancersComponent]
 })
 export class FreelancersModule { }

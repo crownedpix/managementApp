@@ -1,0 +1,138 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>
+      <ion-text color="light">
+        <ion-text color="light" class="fw700">Add Freelancer</ion-text>
+      </ion-text>
+    </ion-title>
+    <!-- <ion-buttons slot="end">
+      <ion-button size="small" shape="round" color="medium" (click)="notifications()">
+        <ion-icon name="notifications"></ion-icon>
+        <ion-badge color="dark" slot="end">2</ion-badge>
+      </ion-button>
+    </ion-buttons> -->
+  </ion-toolbar>
+  <!-- <ion-toolbar color="dark">
+    <ion-searchbar [(ngModel)]="searchKey"></ion-searchbar>
+    <ion-buttons slot="end">
+      <ion-button size="small" shape="round" color="medium" (click)="searchFilter()">
+        <ion-icon name="options"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar> -->
+</ion-header>
+
+<ion-content class="card-background-page">
+  <ion-card no-margin>
+    <ion-grid fixed no-padding>
+      <ion-row>
+        <ion-col size="12">
+
+          <ion-list margin-bottom>
+            <form [formGroup]="addfreelancerForm" (ngSubmit)="createFreelancer()">
+              <ion-item>
+                <ion-label color="dark" position="stacked">Full Name:</ion-label>
+                <ion-input inputmode="text" placeholder="Ex: Joe Doe" value="" formControlName="name"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label color="dark" position="stacked">Designation:</ion-label>
+                <ion-input inputmode="text" placeholder="Ex: Developer" value="" formControlName="designation">
+                </ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label color="dark" position="stacked">Experience:</ion-label>
+                <ion-input inputmode="text" placeholder="Ex:8+ years" value="" formControlName="experience"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label color="dark" position="stacked">Email:</ion-label>
+                <ion-input inputmode="email" formControlName="contact_email" placeholder="Ex.: joe@doe.com" value="">
+                </ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label color="dark" position="stacked">Phone (With County code):</ion-label>
+                <ion-input inputmode="tel" formControlName="contact_phone" placeholder="999 999 9999" value="">
+                </ion-input>
+              </ion-item>
+
+              <ion-item>
+                <ion-label color="dark">State</ion-label>
+                <ion-input inputmode="text" formControlName="state" placeholder="Ex. Ohio" value=""></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label color="dark">Country</ion-label>
+                <ion-select formControlName="country">
+                  <ion-select-option value={{c.country_code}} *ngFor="let c of countries">{{c.country_name}}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+
+              <ion-item>
+                <ion-label color="dark">Skill</ion-label>
+                <ion-select multiple="true" formControlName="skill">
+                  <ion-select-option value={{skill.id}} *ngFor="let skill of skills">{{skill.name}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label color="dark">Referred By</ion-label>
+                <ion-select formControlName="refrenced_by">
+                  <ion-select-option value="{{user.id}}" *ngFor="let user of users">{{user.first_name}}
+                    {{user.last_name}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label color="dark">Current Status</ion-label>
+                <ion-select formControlName="status">
+                  <ion-select-option value="{{sta.value}}" *ngFor="let sta of statuses">{{sta.name}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-label color="dark">Bank Name</ion-label>
+                <ion-input inputmode="text" formControlName="bank_name" placeholder="Ex. Ohio" value=""></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label color="dark">Bank Account Number</ion-label>
+                <ion-input inputmode="text" formControlName="bank_account_no" placeholder="Ex. Ohio" value="">
+                </ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label color="dark">Ifsc Number</ion-label>
+                <ion-input inputmode="test" formControlName="bank_ifsc" placeholder="Ex. Ohio" value=""></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label color="dark">Account Phone Number</ion-label>
+                <ion-input inputmode="tel" formControlName="bank_linked_phone" placeholder="Ex. Ohio" value="">
+                </ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-label color="dark">BHIM Number</ion-label>
+                <ion-input inputmode="number" formControlName="BHIM_number" placeholder="Ex. Ohio" value="">
+                </ion-input>
+              </ion-item>
+              <ion-button size="large" expand="full" color="dark" type="submit" [disabled]="!addfreelancerForm.valid"
+                no-margin>Create Freelancer
+              </ion-button>
+            </form>
+
+
+          </ion-list>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+
+  </ion-card>
+</ion-content>
+
+<!-- <div>
+  <img class="img-logo" src="../vnd/leaflet/images/Mel_V2.png" alt="logo" />
+  <div class="MarkerPopUp">
+    <span class="nameDiv"> ' + name + '</span>
+    <span class="totDiv"> ' + total + '</span>
+    <div class="storeNameDiv">' + storeName + '</div>
+  </div>
+</div> -->

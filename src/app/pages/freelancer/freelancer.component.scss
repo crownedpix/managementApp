@@ -1,0 +1,63 @@
+ion-badge{
+    margin: 0 3px 0 0;
+}
+.content-page{
+    margin: 5px 10px 0 10px;
+}
+h2{
+    font-weight: 900;
+    font-size: 14px;
+    margin: 0px;
+    color: #999999
+}
+h3,p{
+    font-size: 16px;
+    margin-top:0px; 
+   
+}
+app-star{
+    color: #d4692a;
+}
+.callAction{
+    position: relative;
+    .iconStar{
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 18px;
+        span{
+            font-size: 10px;
+            line-height: 10px;
+        }
+        ion-icon{
+            padding-top: 10px;
+        }
+    }
+}
+.contact span{
+    display: block;
+    padding: 5px 0;
+}
+
+.phone{
+    font-size: 12px;
+    display: inline-block;
+    color: antiquewhite;
+    .makeacall{
+        float: left;
+        padding: 10px;
+        color: antiquewhite;
+        text-decoration: none;
+        border-radius: 5px;
+        background: #bb7307;
+    }
+    .whatsapp{
+        float: left;
+        margin-left: 10px;
+        color: antiquewhite;
+        text-decoration: none;
+        border-radius: 5px;
+        padding:10px;
+        background: green;
+    }
+}

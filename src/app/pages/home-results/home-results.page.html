@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="dark">
     <ion-buttons slot="start">
       <ion-menu-button color="secondary"></ion-menu-button>
     </ion-buttons>
@@ -8,12 +8,7 @@
         <ion-text color="light" class="fw700">Dashboard</ion-text>
       </ion-text>
     </ion-title>
-    <ion-buttons slot="end">
-      <ion-button size="small" shape="round" color="medium" (click)="notifications()">
-        <ion-icon name="notifications"></ion-icon>
-        <ion-badge color="dark" slot="end">2</ion-badge>
-      </ion-button>
-    </ion-buttons>
+
   </ion-toolbar>
   <!-- <ion-toolbar color="dark">
     <ion-searchbar [(ngModel)]="searchKey"></ion-searchbar>
@@ -26,26 +21,27 @@
 </ion-header>
 
 <ion-content class="card-background-page">
-  
-  <ion-card text-center (click)="gotoFree()">
+
+  <ion-card text-center (click)="gotoFrees()">
     <div class="card-title">Freelancers</div>
-    <div class="card-subtitle">22 Listings</div>
+    <div class="card-subtitle">{{getValue('freelancers')}}</div>
   </ion-card>
 
-  <ion-card text-center>
+  <!-- <ion-card text-center (click)="gotoProjects('active')">
     <div class="card-title">Active Projects</div>
-    <div class="card-subtitle">12 Listings</div>
-  </ion-card>
+    <div class="card-subtitle">{{getValue('activeprojects')}}</div>
+  </ion-card> -->
 
-  <ion-card  text-center>
+  <ion-card text-center (click)="gotoProjects('')">
     <div class="card-title">Total Projects</div>
-    <div class="card-subtitle">72 Listings</div>
+    <div class="card-subtitle">{{getValue('projects')}}</div>
   </ion-card>
 
-  <ion-card text-center>
+  <ion-card text-center (click)="gotoClients()">
     <div class="card-title">Clients</div>
-    <div class="card-subtitle">12 Listings</div>
+    <div class="card-subtitle">{{getValue('clients')}}</div>
   </ion-card>
 
-  
+
+
 </ion-content>

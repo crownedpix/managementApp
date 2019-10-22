@@ -152,8 +152,8 @@ ion-item {
       margin: 0 5%;
   
       .logo {
-        width: 60px;
-        height: 60px;
+        width: 120px;
+        height: 120px;
         margin: 20px auto 8px;
         border-radius: 10%;
         background: url("/assets/img/ionic4start-ico.png") no-repeat;
@@ -205,5 +205,26 @@ ion-item {
     margin-top: 12px;
     ion-icon {
       margin-bottom: -2px;
+    }
+  }
+
+  .hasSubbox{
+    position: relative;
+   
+    .change{
+      position: absolute;
+      font-size: 12px;
+      top: 0px;
+      right: 0px;
+      display: block;
+      width: 30px;
+      height: 30px;
+      padding: 0 !important;
+      margin: auto;
+      line-height: 30px;
+      border-radius: 50%;
+      text-align: center;
+      background: rgb(236, 193, 74);
+      color:#fff;
     }
   }

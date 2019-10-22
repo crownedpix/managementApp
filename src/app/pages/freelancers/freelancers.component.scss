@@ -1,7 +1,12 @@
 ion-badge{
     margin: 0 3px 0 0;
 }
-
+h2{
+    font-weight: bold;
+}
+app-star{
+    color: #d4692a;
+}
 .callAction{
     position: relative;
     .iconStar{
@@ -18,3 +23,28 @@ ion-badge{
         }
     }
 }
+
+.outerRow {
+    position: relative;
+    .searchDrop{
+        position: absolute;
+        top:  13px;
+        right: 5px;
+        .selectBox{
+            padding: 0px !important;
+            margin: 0px !important;
+        }
+    }
+    .searchText{
+        position: relative;
+        top: 5px;
+        padding-top: 0px  !important;
+        left: 2px;
+        width: 100%;
+        ion-searchbar{
+            padding: 2px  !important;
+            margin: 0 !important;
+        }
+    }
+}
+

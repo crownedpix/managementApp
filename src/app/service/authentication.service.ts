@@ -19,18 +19,21 @@ export class AuthenticationService {
 
   login(data) {
     this.api.login(data).subscribe((req) => {
+      this.api.hideLoader();
       if (req['code'] == 204) {
         
       } else {
         return this.storage.set('TOKEN_KEY', req['token']).then(res => {
+          this.storage.set('c_user',JSON.stringify(req['result']));
+          console.log(JSON.stringify(req['result']));
           this.authenticationState.next(true);
         });
       }
+      this.api.hideLoader();
     });
 
   }
   logout() {
-    console.log("sdsd");
     return this.storage.remove('TOKEN_KEY').then(res => {
       this.authenticationState.next(false);
     });

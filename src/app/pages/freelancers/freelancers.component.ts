@@ -1,15 +1,18 @@
 import { Component , ViewChild} from '@angular/core';
-import { IonInfiniteScroll } from '@ionic/angular';
+// import { IonInfiniteScroll } from '@ionic/angular';
 import {
   NavController,
   MenuController,
   PopoverController,
-  ModalController } from '@ionic/angular';
+  ModalController } from '@ionic/angular';  
 
 // Modals
 import { SearchFilterPage } from '../../pages/modal/search-filter/search-filter.page';
 // Call notifications test by Popover and Custom Component.
 import { NotificationsComponent } from './../../components/notifications/notifications.component';
+import { ApiService } from '../../service/api.service';
+import { ActivatedRoute, Router, NavigationExtras } from '@angular/router';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-freelancers',
@@ -17,24 +20,90 @@ import { NotificationsComponent } from './../../components/notifications/notific
   styleUrls: ['./freelancers.component.scss']
 })
 export class FreelancersComponent {
-  @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+  // @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
+  public searchTerm: string = "";
   searchKey = '';
+  searchType = 'name';
   yourLocation = '123 Test Street';
   themeCover = 'assets/img/ionic4-Start-Theme-cover.jpg';
-
+  freelancers = [];
+  freelancersData = [];
+  skills = [];
   constructor(
     public navCtrl: NavController,
     public menuCtrl: MenuController,
     public popoverCtrl: PopoverController,
-    public modalCtrl: ModalController
+    public modalCtrl: ModalController,
+    private api: ApiService,private route: ActivatedRoute, private router: Router,
+    private storage: Storage
   ) {
-
+    
   }
 
   ionViewWillEnter() {
     this.menuCtrl.enable(true);
+    this.fetchFreelancers();
   }
 
+  ngOnInit() {
+    this.storage.get('skills').then(data => {
+      this.skills = data;
+    });
+    this.setFilteredItems();
+  }
+
+  fetchFreelancers(){
+    console.log('test');
+    const self = this;
+    this.api.getFreelancers().subscribe(data => {
+      this.api.hideLoader();
+      self.api.saveStoreData('freelancers', data['result'].length);
+      self.storage.set('freelancers', data['result']);
+      data['result'].forEach(element => {
+        element.skill = self.sendSkills(element.skill); 
+      });
+      self.freelancersData = data['result'];
+      this.freelancers = data['result'];
+    });
+  }
+
+  sendSkills(data){
+    let skill = JSON.parse(data);
+    let found = '';
+    this.skills.forEach(element => {
+      for(var i =0; i <= skill.length; i++){
+        if(element.id == skill[i]){
+          found += element.name + ', ';
+        }
+      }
+    });
+    return found;
+  }
+
+  setFilteredItems() {
+   const self = this;
+   if(this.searchType == 'name'){
+    self.freelancers = this.freelancersData.filter(item => {
+      return item.name.toLowerCase().indexOf(self.searchTerm.toLowerCase()) > -1;
+    });
+   } else {
+
+    console.log();
+    self.freelancers = this.freelancersData.filter(item => {
+      return item.skill.toLowerCase().indexOf(self.searchTerm.toLowerCase()) > -1;
+    });
+   }
+   
+  }
+
+  goto(value){
+    let navigationExtras: NavigationExtras = {
+      state: {
+        projectType: value
+      }
+    };
+    this.router.navigate(['freelancer'], navigationExtras);
+  }
   settings() {
     this.navCtrl.navigateForward('settings');
   }
@@ -51,9 +120,9 @@ export class FreelancersComponent {
     }, 500);
   }
 
-  toggleInfiniteScroll() {
-    this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
-  }
+  // toggleInfiniteScroll() {
+  //   this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
+  // }
 
   async searchFilter () {
     const modal = await this.modalCtrl.create({
@@ -63,13 +132,9 @@ export class FreelancersComponent {
   }
 
   async notifications(ev: any) {
-    const popover = await this.popoverCtrl.create({
-      component: NotificationsComponent,
-      event: ev,
-      animated: true,
-      showBackdrop: true
-    });
-    return await popover.present();
+    this.navCtrl.navigateForward('home-results');
   }
+
+
 
 }

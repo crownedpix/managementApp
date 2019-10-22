@@ -1,3 +1,50 @@
-<p>
-  clients works!
-</p>
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-buttons slot="start">
+        <ion-menu-button color="secondary"></ion-menu-button>
+      </ion-buttons>
+      <ion-title>
+        <ion-text color="light">
+          <ion-text color="light" class="fw700">Clients</ion-text>
+        </ion-text>
+      </ion-title>
+      <ion-buttons slot="end">
+        <ion-button size="small" shape="round" color="medium" (click)="notifications()">
+          <ion-icon name="home"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+    <!-- <ion-toolbar color="dark">
+      <ion-searchbar [(ngModel)]="searchKey"></ion-searchbar>
+      <ion-buttons slot="end">
+        <ion-button size="small" shape="round" color="medium" (click)="searchFilter()">
+          <ion-icon name="options"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-toolbar> -->
+  </ion-header>
+  
+  <ion-content  class="card-background-page">
+    <ion-list>
+      <ion-item  *ngFor="let client of clients" (click)="goto(client.id)">
+        <ion-label class="callAction">
+          <h2>{{client.name}}</h2>
+          <h3>"Management App" +2</h3>
+          <p>{{client.contact_phone}}</p>
+          <p>{{client.contact_email}}</p>
+          <!-- <app-star name="3.5"></app-star> -->
+          <div style="overflow: scroll">
+            <span *ngIf="skills">
+              <ion-badge color="primary">html</ion-badge>
+            </span>
+            <ion-badge *ngIf="!skill" color="primary">Not listed</ion-badge>
+          </div>
+        </ion-label>
+      </ion-item>
+      <!-- <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+        <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll> -->
+  
+    </ion-list>
+  </ion-content>
