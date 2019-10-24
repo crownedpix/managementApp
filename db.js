@@ -3,7 +3,7 @@ var settings = require('./settings.json');
 var db;
 
 function connectDatabase() {
-    // if (!db) {
+    if (!db) {
         db = mysql.createConnection(settings);
 
         db.connect(function(err){
@@ -11,7 +11,7 @@ function connectDatabase() {
                 console.log('Database is connected!');
             } else {
                 console.log('Error connecting database!');
-                setTimeout(connectDatabase, 2000);
+                // setTimeout(connectDatabase, 2000);
             }
         });
 
@@ -24,7 +24,10 @@ function connectDatabase() {
             }
           });
     }
+    setInterval(function () {
+        db.query('SELECT 1');
+    }, 5000);
     return db;
-// }
+}
 
 module.exports = connectDatabase();
