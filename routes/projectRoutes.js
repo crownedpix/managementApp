@@ -17,7 +17,7 @@ exports.getprojects = (req, res) => {
             let sql = `SELECT * FROM projects`;
             db.query(sql, (err, result) => {
                 if (err) throw err;
-                console.log(result);
+                // console.log(result);
                 res.status(200).json({
                     status: 200,
                     result: result
@@ -29,7 +29,7 @@ exports.getprojects = (req, res) => {
 
 // Insert project record into projects table
 exports.addprojects = (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     let post = {
         "logo": req.body.logo,
         "name": req.body.name,
@@ -50,7 +50,7 @@ exports.addprojects = (req, res) => {
                 message: "Authentication failed"
             });
         } else {
-            console.log(post);
+            // console.log(post);
             let sql = 'INSERT INTO projects SET ?';
             db.query(sql, post, (err, result) => {
                 if (err) throw err;
@@ -76,7 +76,7 @@ exports.getproject = (req, res) => {
             let sql = `SELECT * FROM projects WHERE id = ${req.params.id}`;
             db.query(sql, (err, result) => {
                 if (err) throw err;
-                console.log(result);
+                // console.log(result);
                 res.send(result);
             });
         }

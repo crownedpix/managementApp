@@ -17,7 +17,7 @@ exports.getusers = (req, res) => {
             let sql = `SELECT * FROM users LIMIT ${limit} OFFSET ${offset}`;
             db.query(sql, (err, result) => {
                 if (err) throw err;
-                console.log(result);
+                // console.log(result);
                 res.status(200).json({
                     status: 200,
                     result: result
@@ -42,7 +42,7 @@ exports.getskills = (req, res) => {
             let sql = `SELECT * FROM skills`;
             db.query(sql, (err, result) => {
                 if (err) throw err;
-                console.log(result);
+                // console.log(result);
                 res.status(200).json({
                     status: 200,
                     result: result
@@ -67,7 +67,7 @@ exports.setSkills = (req, res) => {
                 message: "Authentication failed"
             });
         } else {
-            console.log(post);
+            // console.log(post);
             let sql = 'INSERT INTO skills SET ?';
             db.query(sql, post, (err, result) => {
                 if (err) throw err;
@@ -94,7 +94,7 @@ exports.getcountries = (req, res) => {
             let sql = `SELECT * FROM apps_countries`;
             db.query(sql, (err, result) => {
                 if (err) throw err;
-                console.log(result);
+                // console.log(result);
                 res.status(200).json({
                     status: 200,
                     result: result
@@ -132,7 +132,7 @@ exports.deletepost = (req, res) => {
     let sql = `DELETE FROM posts WHERE id = ${req.params.id}`;
     db.query(sql, (err, result) => {
         if (err) throw err;
-        console.log(result);
+        // console.log(result);
         res.send('Posts deleted...');
     });
 };

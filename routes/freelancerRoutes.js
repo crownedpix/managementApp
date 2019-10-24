@@ -17,7 +17,7 @@ exports.getfreelancers = (req, res) => {
             let sql = `SELECT * FROM freelancers`;
             db.query(sql, (err, result) => {
                 if (err) throw err;
-                console.log(result);
+                // console.log(result);
                 res.status(200).json({
                     status: 200,
                     result: result
@@ -29,7 +29,7 @@ exports.getfreelancers = (req, res) => {
 
 // Insert record into table
 exports.addfreelancer = (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     let post = {
         "photo": req.body.photo,
         "name": req.body.name,
@@ -63,7 +63,7 @@ exports.addfreelancer = (req, res) => {
                 message: "Authentication failed"
             });
         } else {
-            console.log(post);
+            // console.log(post);
             let sql = 'INSERT INTO freelancers SET ?';
             db.query(sql, post, (err, result) => {
                 if (err) throw err;
@@ -89,7 +89,7 @@ exports.getfreelancer = (req, res) => {
             let sql = `SELECT * FROM freelancers WHERE id = ${req.params.id}`;
             db.query(sql, (err, result) => {
                 if (err) throw err;
-                console.log(result);
+                // console.log(result);
                 res.send(result);
             });
         }
