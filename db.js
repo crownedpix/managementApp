@@ -3,7 +3,7 @@ var settings = require('./settings.json');
 var db;
 
 function connectDatabase() {
-    if (!db) {
+    // if (!db) {
         db = mysql.createConnection(settings);
 
         db.connect(function(err){
@@ -25,6 +25,6 @@ function connectDatabase() {
           });
     }
     return db;
-}
+// }
 
 module.exports = connectDatabase();

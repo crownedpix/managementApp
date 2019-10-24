@@ -12,12 +12,6 @@ const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(Cors());
-// // Creating ACCESS HEADERS
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
 
 // Token verification for login auth
 verifyToken = (req,res,next)=>{
@@ -81,25 +75,3 @@ setInterval(function() {
     http.get("http://peaceful-sands-57519.herokuapp.com/api/getprojects");
 }, 300000);
 
-// app.set('port',process.env.PORT);
-// http.createServer(app).listen(app.get('port'), function () {
-//     console.log('Express server listening on port ' + app.get('port'));
-// });
-
-// SAMPLES
-
-// // Create Table
-// app.get('/createtable', (req, res)=> {
-//     let sql = 'CREATE TABLE posts(id int AUTO_INCREMENT, title VARCHAR(255), body VARCHAR(255), PRIMARY KEY (id))';
-//     db.query(sql, (err, result) => {
-//         if(err) throw err;
-//         console.log(result);
-//         res.send('Table Created...');
-//     });
-// });
-
-//route to handle Posts CRUD
-// router.get('/getposts',posts.getposts);
-// router.get('/getpost/:id',posts.getpost);
-// router.get('/updatepost/:id',posts.updatepost);
-// router.get('/deletepost/:id',posts.deletepost);
