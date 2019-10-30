@@ -11,7 +11,7 @@ var Cors = require('cors');
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(Cors());
+// app.use(Cors());
 
 // Token verification for login auth
 verifyToken = (req,res,next)=>{
