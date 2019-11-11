@@ -6,12 +6,12 @@ var user = require('./routes/userRoutes');
 var auth = require('./routes/authRoutes');
 var bodyParser = require('body-parser');
 var http = require('http');
-var Cors = require('cors');
+// var Cors = require('cors');
 // Declaration of express
 const app = express();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(Cors());
+// app.use(Cors());
 
 // Token verification for login auth
 verifyToken = (req,res,next)=>{
