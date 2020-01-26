@@ -16,7 +16,6 @@ exports.register = function (req, res) {
       "email": req.body.email,
       "password": hash,
       "roles": req.body.roles,
-      "updated_by": req.body.updated_by,
       "created": today,
       "modified": today
     }
@@ -24,7 +23,8 @@ exports.register = function (req, res) {
       if (error) {
         res.status(400).send({
           "status": 400,
-          "failed": "error ocurred"
+          "failed": "error ocurred",
+          "error": error
         })
       } else {
         res.status(200).send({
@@ -45,7 +45,8 @@ exports.login = function (req, response) {
       // console.log("error ocurred",error);
       response.status(400).send({
         "code": 400,
-        "failed": "error ocurred"
+        "failed": "error ocurred",
+        "error": error
       })
     } else {
       // console.log('The solution is: ', results);
@@ -57,7 +58,8 @@ exports.login = function (req, response) {
             response.status(200).send({
                 "status": 200,
                 "token": tokenForUser(results[0]),
-                "result": results[0]
+                "result": results[0],
+                "res": res
               });
           } else {
             response.status(401).send({
