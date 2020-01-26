@@ -66,8 +66,8 @@ router.post('/setskills', verifyToken, user.setSkills);
 router.get('/getcountries', verifyToken, user.getcountries);
 
 // Run app on Port
-app.listen(process.env.PORT || '3000',()=> {
-// app.listen(process.env.PORT,()=> {
+// app.listen(process.env.PORT || '4000',()=> {
+app.listen(process.env.PORT,()=> {
     console.log("Server started on port 3000");
 });
 
