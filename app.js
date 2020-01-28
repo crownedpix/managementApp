@@ -50,7 +50,7 @@ router.get('/deleteproject/:id', verifyToken, project.deleteproject);
 router.post('/addfreelancer', verifyToken, freelancer.addfreelancer);
 router.get('/getfreelancers', verifyToken, freelancer.getfreelancers);
 router.get('/getfreelancer/:id', verifyToken, freelancer.getfreelancer);
-router.get('/deletefreelancer/:id', verifyToken, freelancer.deletefreelancer)
+router.get('/deletefreelancer/:id', verifyToken, freelancer.deletefreelancer);
 
 // Client Routes
 router.post('/addclient', verifyToken, client.addclient);
