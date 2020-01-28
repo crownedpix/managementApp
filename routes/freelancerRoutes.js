@@ -34,6 +34,7 @@ exports.addfreelancer = (req, res) => {
         "photo": req.body.photo,
         "name": req.body.name,
         "contact_phone": req.body.contact_phone,
+        "contact_phone_whatsapp": req.body.contact_phone_whatsapp,
         "status": req.body.status,
         "contact_email": req.body.contact_email,
         "last_worked": today,
