@@ -13,11 +13,13 @@ CREATE TABLE `users` (
 CREATE TABLE `projects` (
  `id` int(11) NOT NULL AUTO_INCREMENT,
  `logo` varchar(255) COLLATE utf8_unicode_ci,
+ `description` varchar(255) COLLATE utf8_unicode_ci,
  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
  `total_freelancer` int(11) COLLATE utf8_unicode_ci NOT NULL,
+ `skills` int(11) COLLATE utf8_unicode_ci NOT NULL,
  `status` int(12) COLLATE utf8_unicode_ci NOT NULL,
  `client_id` int(12) COLLATE utf8_unicode_ci NOT NULL,
- `brought_by` int(12) COLLATE utf8_unicode_ci NOT NULL,
+ `refrenced_by` int(12) COLLATE utf8_unicode_ci NOT NULL,
  `created` datetime NOT NULL,
  `modified` datetime NOT NULL,
  PRIMARY KEY (`id`)
@@ -37,9 +39,15 @@ CREATE TABLE `freelancers` (
  `bank_account_no` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
  `bank_ifsc` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
  `bank_linked_phone` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `BHIM_number` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `rating` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `notes` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+ `skill` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
  `project_id` int(12) COLLATE utf8_unicode_ci NOT NULL,
  `location` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
  `refrenced_by` int(12) COLLATE utf8_unicode_ci NOT NULL,
+ `designation` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `experience` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
  `created` datetime NOT NULL,
  `modified` datetime NOT NULL,
  PRIMARY KEY (`id`)
@@ -68,6 +76,15 @@ CREATE TABLE `tasklist` (
  `description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
  `project_id` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
  `assigned_to` int(12) COLLATE utf8_unicode_ci NOT NULL,
+ `created` datetime NOT NULL,
+ `modified` datetime NOT NULL,
+ PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `skills` (
+ `id` int(11) NOT NULL AUTO_INCREMENT,
+ `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+ `parent` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
  `created` datetime NOT NULL,
  `modified` datetime NOT NULL,
  PRIMARY KEY (`id`)
